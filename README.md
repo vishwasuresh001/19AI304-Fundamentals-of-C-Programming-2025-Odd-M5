@@ -4,42 +4,78 @@
 ## 10. Implementation of programs using pointer arithmetic.
 # Ex.No:21
   Implement a C program to demonstrate call by value and call by reference by swapping two integers using separate functions.
-# Date : 
-# Aim:
- To implement a C program that illustrates the difference between call by value and call by reference by swapping two integer variables using two separate functions.
-# Algorithm:
-### Step 1:
+  # Date : 31-05-2026
+  # Aim:
+   To implement a C program that illustrates the difference between call by value and call by reference by swapping two integer variables using two separate functions.
+  # Algorithm:
+  ### Step 1:
   Start
-### Step 2: 
+  ### Step 2: 
   Include the standard input-output library: #include<stdio.h>.
-### Step 3:
+  ### Step 3:
   Declare two functions:
   - `swapv(int, int)` for swapping using call by value  
-  - `swapr(int *, int *)` for swapping using call by reference
-### Step 4: 
+- `swapr(int *, int *)` for swapping using call by reference
+  ### Step 4: 
   In the `main()` function, declare two integer variables `a` and `b` and initialize them with values (e.g., 10 and 20).
-### Step 5: 
+  ### Step 5: 
   Print the values of `a` and `b` before calling `swapv()`.
-### Step 6: 
+  ### Step 6: 
   Call the function `swapv(a, b)` and print the values of `a` and `b` after the function call to show that call by value does not change the original values.
-### Step 7: 
+  ### Step 7: 
   Print the values of `a` and `b` before calling `swapr()`.
-### Step 8: 
+  ### Step 8: 
   Call the function `swapr(&a, &b)` using the addresses of `a` and `b`.
-### Step 9: 
+  ### Step 9: 
   Print the values of `a` and `b` after the `swapr()` function call to show that call by reference successfully swaps the original values.
-### Step 10: 
+  ### Step 10: 
   Inside `swapv(x, y)` function:
   - **Step 10.1:** Swap the values of `x` and `y` using a temporary variable.  
   - **Step 10.2:** Print the swapped values (formal parameters).
-### Step 11: 
+  ### Step 11: 
   Inside `swapr(*x, *y)` function:
   - **Step 11.1:** Swap the values pointed to by `x` and `y`.  
   - **Step 11.2:** Print the swapped values (affects actual parameters).
-### Step 12: 
+  ### Step 12: 
   Stop
 # Program:
+```c
+#include <stdio.h>
+
+void swapv(int x, int y) {
+    int temp;
+    temp = x;
+    x = y;
+    y = temp;
+    printf("Inside swapv: x = %d, y = %d\n", x, y);
+}
+
+void swapr(int *x, int *y) {
+    int temp;
+    temp = *x;
+    *x = *y;
+    *y = temp;
+    printf("Inside swapr: a = %d, b = %d\n", *x, *y);
+}
+
+int main() {
+    int a = 10, b = 20;
+
+    printf("Before swapv: a = %d, b = %d\n", a, b);
+    swapv(a, b);
+    printf("After swapv: a = %d, b = %d\n", a, b);
+
+    printf("Before swapr: a = %d, b = %d\n", a, b);
+    swapr(&a, &b);
+    printf("After swapr: a = %d, b = %d\n", a, b);
+
+    return 0;
+}
+```
 # Output:
+
+<img width="818" height="279" alt="image" src="https://github.com/user-attachments/assets/c1986ce1-7474-41fe-b8d5-6eabec3ed3de" />
+
 # Result: 
   Thus, the program was implemented and executed successfully, and the required output was obtained.
 
@@ -48,7 +84,7 @@
 # IAPR-5- Module 5 - FoC
 # Ex.No:22
   Implement a C program to generate the Fibonacci series using a recursive function. The program should accept a positive integer n and display the first n terms of the Fibonacci sequence.
-# Date : 
+# Date : 31-05-2026
 # Aim:
   To implement a C program that uses a recursive function to generate and display the Fibonacci series for a given number of terms.
 # Algorithm:
@@ -77,7 +113,30 @@
 ### Step 10:
   Stop
 # Program:
+```c
+#include<stdio.h>
+
+int fibo(int x) {
+    if(x==0 || x==1)
+        return x;
+    return fibo(x-1) + fibo(x-2);
+}
+
+int main() {
+    int n, i;
+    printf("Enter a positive integer: ");
+    scanf("%d", &n);
+    printf("Fibonacci series of %d terms:\n", n);
+    for(i=0; i<n; i++) {
+        printf("%d ", fibo(i));
+    }
+    return 0;
+}
+```
 # Output:
+
+<img width="809" height="199" alt="image" src="https://github.com/user-attachments/assets/b4c1d744-f2b5-46a4-a320-b744385ae766" />
+
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
@@ -86,7 +145,7 @@ Thus, the program was implemented and executed successfully, and the required ou
 # IAPR-5- Module 5 - FoC
 # Ex.No:23
    Implement a C program to demonstrate recursion by printing a sequence of even or odd numbers from a given lower limit to an upper limit, with each recursive call progressing by 2.
-# Date : 
+# Date : 31-05-2026
 # Aim:
   To implement a C program that uses a recursive function to print even or odd numbers in a specified range based on the starting value provided by the user.
 # Algorithm:
@@ -119,7 +178,40 @@ Thus, the program was implemented and executed successfully, and the required ou
 ### Step 12:
   Stop
 # Program:
+```c
+#include <stdio.h>
+
+void printEvenOdd(int cur, int limit) {
+    if (cur > limit)
+        return;
+
+    if (cur == limit)
+        printf("%d", cur);
+    else
+        printf("%d, ", cur);
+
+    printEvenOdd(cur + 2, limit);
+}
+
+int main() {
+    int lowerLimit, upperLimit;
+
+    printf("Enter the lower limit: ");
+    scanf("%d", &lowerLimit);
+
+    printf("Enter the upper limit: ");
+    scanf("%d", &upperLimit);
+
+    printf("The numbers in the given range are:\n");
+    printEvenOdd(lowerLimit, upperLimit);
+
+    return 0;
+}
+```
 # Output:
+
+<img width="812" height="242" alt="image" src="https://github.com/user-attachments/assets/928e91da-2e63-4a1b-878b-925fb6fa70c4" />
+
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
@@ -128,7 +220,7 @@ Thus, the program was implemented and executed successfully, and the required ou
 # IAPR-5- Module 5 - FoC
 # Ex.No:24
    Implement a C program that dynamically allocates memory using calloc(), accepts integer inputs from the user, computes their sum, and prints the sum.
-# Date : 
+# Date : 31-05-2026
 # Aim:
   To implement a C program that dynamically allocates memory for an array of integers using calloc(), accepts elements from the user, computes their sum, and displays the sum.
 # Algorithm:
@@ -161,7 +253,42 @@ Thus, the program was implemented and executed successfully, and the required ou
 ### Step 11:
   Stop
 # Program:
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int *ptr, n, i, sum = 0;
+
+    printf("Enter the number of elements: ");
+    scanf("%d", &n);
+
+    ptr = calloc(n, sizeof(int));
+
+    if (ptr == NULL) {
+        printf("Memory allocation failed.\n");
+        return 1;
+    }
+
+    printf("Enter %d integers:\n", n);
+    for (i = 0; i < n; i++)
+        scanf("%d", ptr + i);
+
+    for (i = 0; i < n; i++)
+        sum += *(ptr + i);
+
+    printf("Sum = %d\n", sum);
+
+    free(ptr);
+
+    return 0;
+}
+
+```
 # Output:
+
+<img width="811" height="346" alt="image" src="https://github.com/user-attachments/assets/13c8aa33-4b12-4039-b432-f8dd57cbedfb" />
+
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
@@ -170,7 +297,7 @@ Thus, the program was implemented and executed successfully, and the required ou
 # IAPR-5- Module 5 - FoC
 # Ex.No:25
    Implement a C program that reads a set of integers into an array and displays the array elements using a user-defined function.
-# Date : 
+# Date : 31-05-2026
 # Aim:
   To implement a C program that reads integers into an array and displays the elements using a user-defined function.
 # Algorithm:
@@ -197,6 +324,33 @@ Thus, the program was implemented and executed successfully, and the required ou
 ### Step 10:
   Stop
 # Program:
+```c
+#include <stdio.h>
+
+void displayArray(int *arr, int size);
+
+int main() {
+    int arr[5], i;
+
+    printf("Enter 5 integers:\n");
+    for (i = 0; i < 5; i++)
+        scanf("%d", &arr[i]);
+
+    displayArray(arr, 5);
+
+    return 0;
+}
+
+void displayArray(int *arr, int size) {
+    int i;
+    printf("Array elements are:\n");
+    for (i = 0; i < size; i++)
+        printf("%d ", arr[i]);
+}
+```
 # Output:
+
+<img width="816" height="291" alt="image" src="https://github.com/user-attachments/assets/1253dc2b-3c03-4812-85dd-6457597efd16" />
+
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
